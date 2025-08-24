@@ -12,7 +12,7 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "CodeQuest - Interactive Learning Platform",
+  title: "LearnReinforced - Interactive Learning Platform",
   description: "Master computer science through interactive games and challenges",
   generator: "v0.app",
 }

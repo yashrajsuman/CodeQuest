@@ -66,7 +66,7 @@ export function Sidebar() {
                 <Zap className="h-3 w-3 text-accent absolute -top-1 -right-1 animate-pulse" />
               </div>
               <h1 className="text-lg font-bold bg-gradient-to-r from-sidebar-primary via-purple-500 to-accent bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
-                CodeQuest
+                LearnReinforced
               </h1>
             </div>
 

@@ -55,7 +55,7 @@ function LoginContent() {
               <Zap className="h-4 w-4 text-accent absolute -top-1 -right-1 animate-pulse-glow" />
             </div>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              CodeQuest
+              LearnReinforced
             </h1>
           </div>
           <div className="space-y-2">
