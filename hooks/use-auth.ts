@@ -55,7 +55,7 @@ export function useAuthLogic(): AuthContextType {
       }
 
       setUser(updatedUser)
-      dataManager.saveUser(updatedUser)
+      dataManager.saveUser({ ...updatedUser, password }) // Save with password for future logins
       setIsLoading(false)
       return true
     }
@@ -98,14 +98,10 @@ export function useAuthLogic(): AuthContextType {
       },
     }
 
-    // Save user with password for authentication (in real app, this would be hashed)
-    const userWithPassword = { ...newUser, password }
-    const users_updated = [...users, userWithPassword]
-    localStorage.setItem("codequest-users", JSON.stringify(users_updated))
+    // Save user with password for authentication
+    dataManager.saveUser({ ...newUser, password })
 
     setUser(newUser)
-    dataManager.saveUser(newUser)
-
     setIsLoading(false)
     return true
   }
@@ -127,7 +123,7 @@ export function useAuthLogic(): AuthContextType {
     }
 
     setUser(updatedUser)
-    dataManager.saveUser(updatedUser)
+    dataManager.saveUser({ ...updatedUser, password: (dataManager.getCurrentUser() as any)?.password })
 
     // Update in users array for authentication
     const users = dataManager.getUsers()
@@ -151,7 +147,7 @@ export function useAuthLogic(): AuthContextType {
     }
 
     setUser(updatedUser)
-    dataManager.saveUser(updatedUser)
+    dataManager.saveUser({ ...updatedUser, password: (dataManager.getCurrentUser() as any)?.password })
   }
 
   return {

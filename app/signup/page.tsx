@@ -189,10 +189,10 @@ function SignupContent() {
 
 export default function SignupPage() {
   return (
-    <AuthProvider>
-      <PublicRoute>
+    // <AuthProvider>
+      // {/* <PublicRoute> */}
         <SignupContent />
-      </PublicRoute>
-    </AuthProvider>
+      // {/* </PublicRoute> */}
+    // </AuthProvider>
   )
 }

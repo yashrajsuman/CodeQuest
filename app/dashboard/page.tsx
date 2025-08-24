@@ -27,6 +27,7 @@ import {
   BookOpen,
   Sparkles,
 } from "lucide-react"
+import { use } from "react"
 
 const subjects = [
   {
@@ -81,7 +82,7 @@ function DashboardContent() {
   const { user } = useAuth()
   const { getUserStatistics } = useProgress()
   const { newAchievements, showAchievementModal, dismissAchievements } = useAchievements()
-
+  // console.log(user)
   if (!user) return null
 
   const stats = getUserStatistics()
@@ -280,8 +281,8 @@ function DashboardContent() {
 
 export default function DashboardPage() {
   return (
-    <ProtectedRoute>
+    // <ProtectedRoute>
       <DashboardContent />
-    </ProtectedRoute>
+    // {/* </ProtectedRoute> */}
   )
 }

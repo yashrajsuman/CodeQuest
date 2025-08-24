@@ -33,6 +33,7 @@ function LoginContent() {
     }
 
     const success = await login(email, password)
+    // console.log("Login success:", success)  
 
     if (success) {
       router.push("/dashboard")
@@ -129,7 +130,7 @@ function LoginContent() {
         </Card>
 
         {/* Demo Credentials */}
-        <Card className="border border-muted bg-muted/20">
+        {/* <Card className="border border-muted bg-muted/20">
           <CardContent className="pt-6">
             <div className="text-center space-y-2">
               <p className="text-sm font-medium">Demo Account</p>
@@ -140,7 +141,7 @@ function LoginContent() {
               </p>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </div>
   )
@@ -148,8 +149,8 @@ function LoginContent() {
 
 export default function LoginPage() {
   return (
-    <PublicRoute>
+    // <PublicRoute>
       <LoginContent />
-    </PublicRoute>
+    // </PublicRoute>
   )
 }

@@ -28,27 +28,36 @@ class DataManager {
   }
 
   // User Management
-  saveUser(user: User): void {
+  saveUser(user: User & { password?: string }): void {
     if (!this.isClient()) return
 
     try {
       const users = this.getUsers()
       const existingIndex = users.findIndex((u) => u.id === user.id)
 
+      // Preserve password if it exists
+      let userToSave: any = { ...user }
+      if (existingIndex >= 0 && users[existingIndex].password) {
+        userToSave.password = users[existingIndex].password
+      }
+      if (user.password) {
+        userToSave.password = user.password
+      }
+
       if (existingIndex >= 0) {
-        users[existingIndex] = { ...user, lastLoginAt: new Date().toISOString() }
+        users[existingIndex] = { ...userToSave, lastLoginAt: new Date().toISOString() }
       } else {
-        users.push(user)
+        users.push(userToSave)
       }
 
       localStorage.setItem(this.STORAGE_KEYS.USERS, JSON.stringify(users))
-      localStorage.setItem(this.STORAGE_KEYS.CURRENT_USER, JSON.stringify(user))
+      localStorage.setItem(this.STORAGE_KEYS.CURRENT_USER, JSON.stringify(userToSave))
     } catch (error) {
       console.error("Failed to save user:", error)
     }
   }
 
-  getUsers(): User[] {
+  getUsers(): (User & { password?: string })[] {
     if (!this.isClient()) return []
 
     try {
@@ -60,12 +69,13 @@ class DataManager {
     }
   }
 
-  getCurrentUser(): User | null {
+  getCurrentUser(): (User & { password?: string }) | null {
     if (!this.isClient()) return null
 
     try {
       const user = localStorage.getItem(this.STORAGE_KEYS.CURRENT_USER)
       return user ? JSON.parse(user) : null
+      
     } catch (error) {
       console.error("Failed to get current user:", error)
       return null

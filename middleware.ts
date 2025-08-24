@@ -16,11 +16,11 @@ export function middleware(request: NextRequest) {
   const userSession = request.cookies.get("codequest-session")
 
   // Redirect logic for protected routes
-  if (isProtectedRoute && !userSession) {
-    const loginUrl = new URL("/login", request.url)
-    loginUrl.searchParams.set("redirect", pathname)
-    return NextResponse.redirect(loginUrl)
-  }
+  // if (isProtectedRoute && !userSession) {
+  //   const loginUrl = new URL("/login", request.url)
+  //   loginUrl.searchParams.set("redirect", pathname)
+  //   return NextResponse.redirect(loginUrl)
+  // }
 
   // Redirect logic for public-only routes (login/signup)
   if (isPublicOnlyRoute && userSession) {
